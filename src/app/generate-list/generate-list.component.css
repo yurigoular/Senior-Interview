@@ -38,6 +38,11 @@
 .hide{
     display: none;
 }
+@media screen and (max-width: 40em){
+    .hide-40em{
+        display: none !important;
+    }
+}
 
 /* Show priority 1 at 320px (20em x 16px) */
 @media screen and (min-width: 20em) {

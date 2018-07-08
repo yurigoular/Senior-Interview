@@ -23,11 +23,11 @@ export class FormComponent implements OnInit {
         label: '',
         id: '',
         symbol: '',
-        decimals: 3,
+        decimals: 0,
         integer: false
     },
     quantity: null,
-    price: 0,
+    price: null,
     perishable: false,
     validDate: null,
     fabrication: new Date()
@@ -45,8 +45,19 @@ export class FormComponent implements OnInit {
     this.enums = Constants['enums'];
     this.dataAtual = new Date();
   }
+  pt: any;
 
   ngOnInit() {
+    this.pt = {
+      firstDayOfWeek: 0,
+      monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+      monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'],
+      dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+      dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
+      dayNamesMin: ['D','S','T','Q','Q','S','S'],
+      today: 'Hoje',
+      clear: 'Limpar'
+    };
     if(this.route.snapshot.paramMap.get('id')){
       this.formRegister.patchValue({
         id: Number(this.route.snapshot.paramMap.get('id'))
@@ -76,11 +87,19 @@ export class FormComponent implements OnInit {
     }
     localStorage.setItem('listaForm', JSON.stringify(this.lista));
     this.msgs = [];
-    this.msgs.push({severity: 'info', summary: 'Sucesso', detail: (index > -1 ? 'Item Atualizado' : 'Item Cadastrado')});
+    this.msgs.push({severity: 'success', summary: 'Sucesso', detail: (index > -1 ? 'Item Atualizado' : 'Item Cadastrado')});
   }
 
   existeNaLista(id){
     return this.lista.indexOf(this.lista.filter(item => item && item.id == id)[0]);
+  }
+
+  verificaValidade(){
+    if(this.formRegister.get('validDate').value <= this.formRegister.get('fabrication').value){
+      this.formRegister.patchValue({
+        fabrication: this.formRegister.get('validDate').value
+      })
+    }
   }
 
 

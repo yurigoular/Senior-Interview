@@ -33,7 +33,7 @@
         </div>
         <div class="ui-g-8">
             <div class="ui-inputgroup">
-                <input formControlName="quantity" pInputText [disabled]="!formRegister.value.enum.id" currencyMask [options]="{prefix: '', allowNegative: false, precision: formRegister.value.enum.decimals, thousands: '.', decimal: ','}" placeholder="Quantidade" required >
+                <input formControlName="quantity" pInputText currencyMask [options]="{prefix: '', allowNegative: false, precision: formRegister.value.enum.decimals, thousands: '.', decimal: ','}" placeholder="Quantidade" required >
                 <span class="ui-inputgroup-addon">{{formRegister.value.enum.symbol}}</span>  
             </div>
         </div>
@@ -52,7 +52,7 @@
                 Validade
             </div>
             <div class="ui-g-8 ui-inputgroup" fxLayout="column">
-                <p-calendar formControlName="validDate" dateFormat="dd/mm/yy" [required]="formRegister.value.perishable" showIcon="true"></p-calendar>
+                <p-calendar formControlName="validDate" dateFormat="dd/mm/yy" [required]="formRegister.value.perishable" showIcon="true" [locale]="pt" (onInput)="verificaValidade()" (onSelect)="verificaValidade()"></p-calendar>
                 <li *ngIf="formRegister.value.validDate && (dataAtual > formRegister.value.validDate)" class="ui-message ui-messages-error ui-corner-all no-margin">Produto encontra-se vencido</li>
             </div>
         </div>
@@ -61,7 +61,7 @@
                 Fabricação
             </div>
             <div class="ui-g-8 ui-inputgroup" fxLayout="column">
-                <p-calendar formControlName="fabrication" showIcon="true" dateFormat="dd/mm/yy" [maxDate]="formRegister.value.perishable ? formRegister.value.validDate : null" ></p-calendar>
+                <p-calendar formControlName="fabrication" showIcon="true" dateFormat="dd/mm/yy" [maxDate]=" formRegister.value.validDate" [locale]="pt" ></p-calendar>
             </div>
         </div>
   </div>

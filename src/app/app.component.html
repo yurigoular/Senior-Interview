@@ -1,6 +1,6 @@
 <div  fxLayout="column">
     <p-breadcrumb [model]="items"></p-breadcrumb>
-    <div fxLayout="row" fxLayout.sm="column">
+    <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
         <p-panelMenu [model]="panelItems" class="panelMenu-root" [multiple]="false"></p-panelMenu>
         <router-outlet></router-outlet>
     </div>
