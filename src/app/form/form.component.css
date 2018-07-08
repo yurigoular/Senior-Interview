@@ -1,3 +1,21 @@
 .no-margin{
     margin: 0
 }
+.mr-10{
+    margin-right: 10px;
+}
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .formulario-responsive{
+        display: -webkit-box;      
+        display: -moz-box;        
+        display: -ms-flexbox;    
+        display: -webkit-flex;     
+        display: flex;   
+    }
+    .form-column{
+        -webkit-flex-direction: column;
+        -moz-flex-direction: column;
+        -ms-flex-direction: column;	
+        flex-direction: column;
+    }
+}

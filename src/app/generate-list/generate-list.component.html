@@ -1,4 +1,4 @@
-<p-table [value]="dados" [columns]="columns" [responsive]="true" dataKey="id">
+<p-table [value]="dados" [columns]="columns" [responsive]="true" dataKey="id" styleClass="table-fixed-auto">
     <ng-template pTemplate="header" let-columns>
       <tr >
         <th [fxShow.sm]="columns.length > 3" fxShow="false" style="width: 2.25em"></th>
@@ -18,14 +18,14 @@
                 </a>
             </td>
             <td *ngFor="let col of columns; let i = index" [attr.data-index]="i" [ngClass.sm]="i > 3 ? 'hide' : ''">
-                <span class="ui-column-title">{{col.descricao}}</span>
+                <span class="ui-column-title ui-g-6">{{col.descricao}}</span>
                 <span  *ngIf="!col.template">
                     <span *ngIf="col.campo">{{dado[col.campo]}}</span>
                     <span *ngIf="col.campoFormatado">{{col.campoFormatado(dado)}}</span>
                     <i *ngIf="col.icone" class="pi" [ngClass]="col.icone"></i>
                 </span>
                 <span *ngIf="col.template == 'enum'">
-                    <span *ngFor="" class="pr-10">{{constants.enums}}</span> 
+                    <span class="pr-10">{{dado[col.campo].label}}</span> 
                 </span>
                 <span *ngIf="col.template == 'boolean'">
                     <span class="pr-10">{{dado[col.campo] == true ? 'Sim' : 'Não'}}</span> 

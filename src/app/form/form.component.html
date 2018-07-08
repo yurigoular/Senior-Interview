@@ -1,4 +1,4 @@
-<form [formGroup]="formRegister" (ngSubmit)="submit()" class="p-3 bg-faded">
+<form [formGroup]="formRegister" (ngSubmit)="submit()" class="p-3 bg-faded formulario-responsive form-column">
   <div class="ui-g-12 ui-fluid">
     <div class="ui-g-12 ui-md-6">
         <div class="ui-g-4">
@@ -33,7 +33,7 @@
         </div>
         <div class="ui-g-8">
             <div class="ui-inputgroup">
-                <input formControlName="quantity" pInputText currencyMask [options]="{prefix: '', allowNegative: false, precision: formRegister.value.enum.decimals, thousands: '.', decimal: ','}" placeholder="Quantidade" required >
+                <input formControlName="quantity" pInputText currencyMask [options]="{prefix: '', allowNegative: false, precision: formRegister.value.enum.decimals, thousands: '.', decimal: ','}" placeholder="Quantidade" >
                 <span class="ui-inputgroup-addon">{{formRegister.value.enum.symbol}}</span>  
             </div>
         </div>
@@ -65,7 +65,8 @@
             </div>
         </div>
   </div>
-  <button pButton type="submit" [disabled]="!formRegister.valid || formRegister.pristine" label="Salvar"></button>
+  <span class="mr-10"><button  pButton type="submit" [disabled]="!formRegister.valid || formRegister.pristine" label="Salvar"></button></span>
+  <a routerLink="/list"><button pButton type="button" class="ui-button-secondary" label="Cancelar"></button></a>
 
 </form>
 <p-growl [value]="msgs"></p-growl>

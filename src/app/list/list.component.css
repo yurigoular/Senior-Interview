@@ -2,3 +2,10 @@
     padding-top: 5px;
     float: right;
 }
+
+.table-fixed-auto table{
+    table-layout: auto !important;
+}
+.ui-table table{
+    table-layout: auto;
+}

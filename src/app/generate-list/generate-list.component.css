@@ -91,3 +91,6 @@
         display: table-cell;
     }
 }
+:host ::ng-deep .table-fixed-auto table{
+    table-layout: auto !important;
+}

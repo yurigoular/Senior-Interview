@@ -2,6 +2,7 @@
     min-width: 150px;
     width: 150px;
     max-width: 150px;
+    display: block;
 }
 @media screen and (max-width: 60em){
     .panelMenu-root{
@@ -10,7 +11,7 @@
     }
 }
 
-[fxLayout]{
+[fxLayout],[fxlayout]{
     display: -webkit-box;      
     display: -moz-box;        
     display: -ms-flexbox;    
@@ -29,4 +30,8 @@
     -moz-flex-direction: row;
     -ms-flex-direction: row;	
     flex-direction: row;
+}
+
+.ui-table table{
+    table-layout: auto !important;
 }
