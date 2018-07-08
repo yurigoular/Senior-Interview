@@ -1,0 +1,32 @@
+.panelMenu-root{
+    min-width: 150px;
+    width: 150px;
+    max-width: 150px;
+}
+@media screen and (max-width: 60em){
+    .panelMenu-root{
+        width: 100%;
+        min-width: 100%;
+    }
+}
+
+[fxLayout]{
+    display: -webkit-box;      
+    display: -moz-box;        
+    display: -ms-flexbox;    
+    display: -webkit-flex;     
+    display: flex;         
+}
+
+[fxLayout="column"]{
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;	
+    flex-direction: column;
+}
+[fxLayout="row"]{
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;	
+    flex-direction: row;
+}

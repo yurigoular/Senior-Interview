@@ -1,0 +1,71 @@
+<form [formGroup]="formRegister" (ngSubmit)="submit()" class="p-3 bg-faded">
+  <div class="ui-g-12 ui-fluid">
+    <div class="ui-g-12 ui-md-6">
+        <div class="ui-g-4">
+            Nome do Item
+        </div>
+        <div class="ui-g-8 ui-inputgroup">
+            <input type="text" formControlName="itemName" maxlength="50" pInputText pKeyFilter="alpha" placeholder="Nome do Item" required >     
+        </div>
+    </div>
+    <div class="ui-g-12 ui-md-6">
+        <div class="ui-g-4">
+            Preço
+        </div>
+        <div class="ui-g-8 ui-inputgroup">
+            <input pInputText formControlName="price" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative:'false' }" placeholder="Preço" required >
+        </div>
+    </div>
+  </div>
+  <div class="ui-g-12 ui-fluid">
+    <div class="ui-g-12 ui-md-6">
+        <div class="ui-g-4">
+            Unidade de Medida
+        </div>
+        <div class="ui-g-8 ui-inputgroup">
+            <p-dropdown class="ui-g-12" [autoWidth]="false" formControlName="enum" [options]="enums" placeholder="Unidade de Medida" required> </p-dropdown>   
+        </div>
+    </div>
+
+    <div class="ui-g-12 ui-md-6">
+        <div class="ui-g-4">
+            Quantidade
+        </div>
+        <div class="ui-g-8">
+            <div class="ui-inputgroup">
+                <input formControlName="quantity" pInputText [disabled]="!formRegister.value.enum.id" currencyMask [options]="{prefix: '', allowNegative: false, precision: formRegister.value.enum.decimals, thousands: '.', decimal: ','}" placeholder="Quantidade" required >
+                <span class="ui-inputgroup-addon">{{formRegister.value.enum.symbol}}</span>  
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="ui-g-12 ui-fluid">
+    <div class="ui-g-12">
+        <div class="ui-inputgroup">
+            <p-checkbox formControlName="perishable" binary="true" label=" Produto Perecível"></p-checkbox>
+        </div>
+    </div>
+  </div>
+  <div class="ui-g-12 ui-fluid">
+        <div class="ui-g-12 ui-md-6">
+            <div class="ui-g-4">
+                Validade
+            </div>
+            <div class="ui-g-8 ui-inputgroup" fxLayout="column">
+                <p-calendar formControlName="validDate" dateFormat="dd/mm/yy" [required]="formRegister.value.perishable" showIcon="true"></p-calendar>
+                <li *ngIf="formRegister.value.validDate && (dataAtual > formRegister.value.validDate)" class="ui-message ui-messages-error ui-corner-all no-margin">Produto encontra-se vencido</li>
+            </div>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+            <div class="ui-g-4">
+                Fabricação
+            </div>
+            <div class="ui-g-8 ui-inputgroup" fxLayout="column">
+                <p-calendar formControlName="fabrication" showIcon="true" dateFormat="dd/mm/yy" [maxDate]="formRegister.value.perishable ? formRegister.value.validDate : null" ></p-calendar>
+            </div>
+        </div>
+  </div>
+  <button pButton type="submit" [disabled]="!formRegister.valid || formRegister.pristine" label="Salvar"></button>
+
+</form>
+<p-growl [value]="msgs"></p-growl>
